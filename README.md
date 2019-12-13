@@ -92,3 +92,9 @@ image format (`png`, etc.) with `-f` option:
 python3 dependency2tree.py -o <output.png> -c -f png <input.conll>
 ```
 
+For more information, run:
+
+```bash
+python3 dependency2tree.py -h
+```
+
