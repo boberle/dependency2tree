@@ -110,7 +110,7 @@ Use the `--ignore-double-indices` option to ignore these words:
 python3 dependency2tree.py -o docs/french.svg -c testing/french.conll --ignore-double-indices
 ```
 
-<img src="docs/french-001.png"/>
+<img src="docs/french-001.png" width="500px"/>
 
 
 For more information, run:
