@@ -68,7 +68,7 @@ In the GraphViz mode (the default mode), each sentence is in its own file.  If
 you don't want to compile, you can get graphviz files with:
 
 ```bash
-python3 dependency2tree.py -o <output.gv> -c <input.conll>
+python3 dependency2tree.py -o <output.gv> <input.conll>
 ```
 
 You will get `output-001.gv`, `output-002.gv`, etc. for each sentence. You can
@@ -91,6 +91,27 @@ image format (`png`, etc.) with `-f` option:
 ```bash
 python3 dependency2tree.py -o <output.png> -c -f png <input.conll>
 ```
+
+Some corpora (as GSD) decompose French amalgams (for example "du" is decomposed to "de le").  The original word is saved within the conll file with a hyphen in the index:
+
+```
+1	Je	il	PRON	...
+2	vais	aller	VERB	...
+3	faire	faire	VERB	...
+4-5	du	_	...
+4	de	de	ADP	...
+5	le	le	DET	...
+6	vélo	vélo	NOUN	...
+```
+
+Use the `--ignore-double-indices` option to ignore these words:
+
+```bash
+python3 dependency2tree.py -o docs/french.svg -c testing/french.conll --ignore-double-indices
+```
+
+<img src="docs/french-001.png"/>
+
 
 For more information, run:
 

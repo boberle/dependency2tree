@@ -156,9 +156,10 @@ class Sentence:
 
 class ConllFile:
 
-    def __init__(self, filename):
+    def __init__(self, filename, ignore_double_indices=False):
         self.filename = filename
         self.sentences = []
+        self.ignore_double_indices = ignore_double_indices
 
     def read(self):
         tokens = []
@@ -170,6 +171,8 @@ class ConllFile:
                     tokens = []
                 continue
             split = line.split("\t")
+            if self.ignore_double_indices and "-" in split[0]:
+                continue
             # ID FORM LEMMA CPOSTAG POSTAG FEATS HEAD DEPREL PHEAD PDEPREL
             token = Token(
                 index=int(split[0]),
@@ -243,6 +246,10 @@ def parse_args():
         action="store_true", help="include features")
     parser.add_argument("-c", "--compile", dest="compile", default=False,
         action="store_true", help="compile using --cmd")
+    parser.add_argument("--ignore-double-indices", dest="ignore_double_indices",
+        default=False, action="store_true",
+        help="ignore tokens with a hyphen in the index (specific to "
+        "some corpora for managing amalgams)")
     parser.add_argument("--cmd", dest="command", default="",
         help="the command use to compile (if --compile); default is "
         "'dot' if --mode is 'graphviz', 'lualatex' if --mode is 'latex'")
@@ -264,7 +271,10 @@ def parse_args():
 
 def main():
     args = parse_args()
-    conll_file = ConllFile(args.input_file)
+    conll_file = ConllFile(
+        args.input_file,
+        ignore_double_indices=args.ignore_double_indices
+    )
     if args.mode == MODE_LATEX:
         conll_file.write_latex(args.output_file, command=args.command,
             include_feats=args.include_feats)

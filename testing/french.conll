@@ -1,0 +1,11 @@
+1	Je	il	PRON	_	Number=Sing|Person=1|PronType=Prs	2	nsubj	_	_
+2	vais	aller	VERB	_	Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin	0	root	_	_
+3	faire	faire	VERB	_	VerbForm=Inf	2	xcomp	_	_
+4-5	du	_	_	_	_	_	_	_	_
+4	de	de	ADP	_	_	6	case	_	_
+5	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	6	det	_	_
+6	vélo	vélo	NOUN	_	Gender=Masc|Number=Sing	3	obl:arg	_	_
+7	cet	ce	DET	_	Gender=Masc|Number=Sing|PronType=Dem	8	det	_	_
+8	après-midi	après-midi	NOUN	_	Gender=Masc|Number=Sing	3	obl	_	_
+9	.	.	PUNCT	_	_	2	punct	_	_
+
