@@ -42,11 +42,7 @@ Dependency parsers that uses the CoNLL parser includes:
 
 ## Quick start
 
-There are two modes: Latex or Graphviz.  With the **Latex mode**, all the
-sentences will be in a file, each on its own page.  The script produces a
-`.tex` file, named according to the -o option, which is compiled if the `-c`
-switch is set (otherwise, just run `pdflatex|lualatex <file>.tex`).  To
-activate this mode, you must use the the `-l` swith or the `-m latex` option:
+There are two modes: Latex or Graphviz.  With the **Latex mode**, all the sentences will be in a file, each on its own page.  The script produces a `.tex` file, named according to the -o option, which is compiled if the `-c` switch is set (otherwise, just run `pdflatex|lualatex <file>.tex`).  To activate this mode, you must use the the `-l` swith or the `-m latex` option:
 
 For example:
 
@@ -61,32 +57,34 @@ python3 dependency2tree.py -l -o <output.tex> <input.conll>
 pdflatex output.tex # or lualatex
 ```
 
-This will produces a `output.pdf` file containing your trees.
+This will produces a `output.pdf` file containing your trees.  Of course, you will need to install `pdflatex` or `lualatex` (with your package manager of with texlive).
 
 
-In the GraphViz mode (the default mode), each sentence is in its own file.  If
-you don't want to compile, you can get graphviz files with:
+In the **GraphViz mode** (the default mode), each sentence is in its own file.  If you don't want to compile, you can get graphviz files with:
 
 ```bash
 python3 dependency2tree.py -o <output.gv> <input.conll>
 ```
 
-You will get `output-001.gv`, `output-002.gv`, etc. for each sentence. You can
-run `dot` to get image files (replace svg by the format you want):
+You will get `output-001.gv`, `output-002.gv`, etc. for each sentence. You can run `dot` to get image files (replace svg by the format you want):
 
 ```bash
 dot -Tsvg output-001.gv > output-001.svg
 ```
 
-If you want to compile automatically with the `-c` swith, just adjust the
-output file extension to `svg` (or `png`, etc.) instead of `gv`:
+The `dot` command comes with the [`graphviz` program](https://www.graphviz.org/), which can be installed on Ubuntu with the following command:
+
+```bash
+sudo apt install graphviz
+```
+
+If you want to compile automatically with the `-c` switch, just adjust the output file extension to `svg` (or `png`, etc.) instead of `gv`:
 
 ```bash
 python3 dependency2tree.py -o <output.svg> -c <input.conll>
 ```
 
-This will get you `output-001.svg`, `output-002.svg`, etc.  You can change the
-image format (`png`, etc.) with `-f` option:
+This will get you `output-001.svg`, `output-002.svg`, etc.  You can change the image format (`png`, etc.) with `-f` option:
 
 ```bash
 python3 dependency2tree.py -o <output.png> -c -f png <input.conll>
